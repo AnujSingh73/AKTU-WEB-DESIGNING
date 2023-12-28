@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+        .cart-page {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-page table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-page th,
+        .cart-page td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .cart-page th {
+            background-color: #f2f2f2;
+        }
+
+        .cart-page .total-price {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .cart-page .btn-checkout {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-page">
+        <h1>Your Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-table-body">
+                <!-- Rows will be dynamically generated here -->
+            </tbody>
+        </table>
+        <div class="total-price">Total Price: $<span id="total-price">0</span></div>
+        <a href="#" class="btn-checkout">Checkout</a>
+    </div>
+
+    <script>
+        const books = [
+            { id: 1, title: 'XMLBible', price: 40.5 },
+            { id: 2, title: 'AI', price: 63 },
+            { id: 3, title: 'Java 2', price: 35.5},
+        ];
+
+        let cart = [];
+
+        function updateCartTable() {
+            const tableBody = document.getElementById('cart-table-body');
+            tableBody.innerHTML = '';
+
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const row = tableBody.insertRow();
+
+                const bookCell = row.insertCell();
+                bookCell.textContent = item.book.title;
+
+                const priceCell = row.insertCell();
+                priceCell.textContent = '$' + item.book.price;
+
+                const quantityCell = row.insertCell();
+                quantityCell.textContent = item.quantity;
+
+                const totalCell = row.insertCell();
+                totalCell.textContent = '$' + (item.book.price * item.quantity);
+
+                totalPrice += item.book.price * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = totalPrice;
+        }
+
+        // Simulating adding items to the cart
+        cart.push({ book: books[0], quantity: 1 });
+        cart.push({ book: books[1], quantity: 2 });
+        cart.push({ book: books[2], quantity: 3 });
+
+        updateCartTable();
+    </script>
+</body>
+</html>

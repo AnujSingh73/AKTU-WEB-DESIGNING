@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    .error {
+      color: red;
+    }
+    /* Additional styles for the submit button */
+input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Optional: Add box shadow for a raised effect on hover */
+  input[type="submit"]:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #1e5799, #2989d8, #7db9e8);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #fff;
+  }
+  
+  form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+    
+  </style>
+</head>
+<body><center>
+  <h2>Registration Form</h2>
+  <form id="registrationForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <span id="nameError" class="error"></span><br>
+    <br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <span id="passwordError" class="error"></span><br><br>
+
+    <label for="email">E-mail:</label>
+    <input type="text" id="email" name="email">
+    <span id="emailError" class="error"></span><br><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone">
+    <span id="phoneError" class="error"></span><br><br>
+
+    <label>Sex:</label>
+    <input type="radio" id="male" name="sex" value="male"> Male
+    <input type="radio" id="female" name="sex" value="female"> Female<br><br>
+
+    <label for="dob">Date of Birth:</label>
+    <select id="day" name="day"></select>
+    <select id="month" name="month"></select>
+    <select id="year" name="year"></select><br><br>
+
+    <label>Languages known:</label>
+    <input type="checkbox" id="english" name="language" value="english"> English
+    <input type="checkbox" id="telugu" name="language" value="telugu"> Telugu
+    <input type="checkbox" id="hindi" name="language" value="hindi"> Hindi
+    <input type="checkbox" id="tamil" name="language" value="tamil"> Tamil<br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address"></textarea><br><br>
+
+    <input type="submit" value="Submit">
+
+  </form>
+
+  <script>
+    function validateForm() {
+      // Validation for Name
+      var name = document.getElementById("name").value;
+      var nameError = document.getElementById("nameError");
+      if (!/^[a-zA-Z]+$/.test(name) || name.length < 6) {
+        nameError.innerHTML = "Name should contain alphabets and length should not less than 6 characters";
+        return false;
+      } else {
+        nameError.innerHTML = "";
+      }
+
+      // Validation for Password
+      var password = document.getElementById("password").value;
+      var passwordError = document.getElementById("passwordError");
+      if (password.length < 6) {
+        passwordError.innerHTML = "Password should be at least 6 characters long.";
+        return false;
+      } else {
+        passwordError.innerHTML = "";
+      }
+
+      // Validation for E-mail
+      var email = document.getElementById("email").value;
+      var emailError = document.getElementById("emailError");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailError.innerHTML = "Invalid e-mail address.";
+        return false;
+      } else {
+        emailError.innerHTML = "";
+      }
+
+      // Validation for Phone Number
+      var phone = document.getElementById("phone").value;
+      var phoneError = document.getElementById("phoneError");
+      if (!/^\d{10}$/.test(phone)) {
+        phoneError.innerHTML = "Phone number should contain 10 digits only.";
+        return false;
+      } else {
+        phoneError.innerHTML = "";
+      }
+
+      // Other validations can be added here...
+
+      return true; // Form is valid
+    }
+
+    // Populate the date of birth select boxes
+    function populateDateOfBirth() {
+      var daySelect = document.getElementById("day");
+      var monthSelect = document.getElementById("month");
+      var yearSelect = document.getElementById("year");
+
+      for (var i = 1; i <= 31; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        daySelect.add(option);
+      }
+
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      for (var i = 0; i < months.length; i++) {
+        var option = document.createElement("option");
+        option.value = i + 1;
+        option.text = months[i];
+        monthSelect.add(option);
+      }
+
+      var currentYear = new Date().getFullYear();
+      for (var i = currentYear; i >= currentYear - 100; i--) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        yearSelect.add(option);
+      }
+    }
+
+    // Call the function to populate date of birth select boxes
+    populateDateOfBirth();
+  </script>
+</center>
+
+</body>
+</html>

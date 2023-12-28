@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title> Catalogue </title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function addToCart() {
+           // Add the item to the cart here
+           // For example, you could increment a counter
+           let cartCount = document.getElementById('cart-count');
+           cartCount.textContent = parseInt(cartCount.textContent) + 1;
+        }
+       </script>
+    <form action="cart.html">
+        <table border="1" width="100%">
+            <tr>
+                <td> <img src="XML.jpg" width=100 height=100 /> </td>
+                <td> Book:XMLBible<br> Author: Winston <br> Publication:Wiely</td>
+                <td>$40.5  &nbsp;&nbsp;&nbsp;</td>
+                <td> <a href="cart.html" onclick="addToCart()"><img src="AddTC.png" style="width:100;height:100;"><i class="fa fa-shopping-cart"></i> Cart
+                    <span id="cart-count">0</span></a></td>
+            </tr>
+            <tr>
+                <td> <img src="AI.jpeg" width=100 height=100 /></td>
+                <td> Book:AI <br> Author:S.Russel <br>
+                    Publication:Pricetonhall</td>
+                <td> $63 &nbsp;&nbsp;&nbsp; </td>
+                <td> <a href="cart.html"><img src="AddTC.png" style="width:100;height:100;"></a></td>
+            </tr>
+            <tr>
+                <td> <img src="Java.jpg" width=100 height=100 /></td>
+                <td> Book:Java 2<br> Author:Watson <br>
+                    Publication:BPBpublication</td>
+                <td> $35.5 &nbsp;&nbsp;&nbsp; </td>
+                <td> <a href="cart.html"><img src="AddTC.png" style="width:100;height:100;"></a></td>
+            </tr>
+            <tr>
+                <td> <img src="HTML.jpeg" width=100 height=100 /></td>
+                <td> Book:HTML in 24<br> Author:Sam Peter <br>
+                    Publication:Sam publication</td>
+                <td> $50 &nbsp;&nbsp;&nbsp; </td>
+                <td> <a href="cart.html"><img src="AddTC.png" style="width:100;height:100;"></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
